@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Agent;
+use App\Models\Category;
+use App\Models\Status;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -23,7 +26,12 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        // Pass related data to the view for status, agent, and category
+        $statuses = Status::all();    // Fetch all statuses
+        $agents = Agent::all();       // Fetch all agents
+        $categories = Category::all(); // Fetch all categories
+        
+        return view('tickets.create', compact('statuses', 'agents', 'categories'));
     }
 
     /**
