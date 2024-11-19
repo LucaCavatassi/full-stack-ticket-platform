@@ -74,6 +74,15 @@
               </li>
             </ul>
 
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link text-white {{ Route::currentRouteName() == 'tickets.create' ? 'bg-secondary' : '' }}"
+                  href="{{ route('admin.tickets.create') }}">
+                  <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Create
+                </a>
+              </li>
+            </ul>
+
 
           </div>
         </nav>

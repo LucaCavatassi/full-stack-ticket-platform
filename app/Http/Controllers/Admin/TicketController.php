@@ -30,8 +30,8 @@ class TicketController extends Controller
         $statuses = Status::all();    // Fetch all statuses
         $agents = Agent::all();       // Fetch all agents
         $categories = Category::all(); // Fetch all categories
-        
-        return view('tickets.create', compact('statuses', 'agents', 'categories'));
+
+        return view('admin.tickets.create', compact('statuses', 'agents', 'categories'));
     }
 
     /**
@@ -39,7 +39,27 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the incoming request
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status_id' => 'required|exists:statuses,id',
+            'agent_id' => 'required|exists:agents,id',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        // Create a new ticket
+        $ticket = Ticket::create([
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'status_id' => $validated['status_id'],
+            'agent_id' => $validated['agent_id'],
+            'category_id' => $validated['category_id'],
+            'slug' => null, // slug will be generated automatically by the model
+        ]);
+
+        // Redirect to the ticket show page (or to the index page, etc.)
+        return redirect()->route('tickets.show', $ticket->slug)->with('success', 'Ticket created successfully!');
     }
 
     /**
