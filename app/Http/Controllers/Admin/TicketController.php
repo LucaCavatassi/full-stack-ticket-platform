@@ -15,7 +15,7 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::with(['status', 'agent', 'category'])->get();
-        return view('tickets.index', compact('tickets'));
+        return view('admin.tickets.index', compact('tickets'));
     }
 
     /**
@@ -44,7 +44,7 @@ class TicketController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
-        return view('tickets.show', compact('ticket'));
+        return view('admin.tickets.show', compact('ticket'));
     }
     /**
      * Show the form for editing the specified resource.
