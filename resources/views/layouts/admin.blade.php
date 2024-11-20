@@ -50,7 +50,7 @@
 
     <div class="container-fluid">
       <div class="row ms-height">
-        <nav id="sidebarMenu" class="col-md-3 ms-height-sbar col-lg-2 d-md-block bg-dark ps-0 navbar-dark sidebar collapse">
+        <nav id="sidebarMenu" class="col-md-3 ms-height-sbar col-lg-2 d-md-block bg-dark ps-0 navbar-dark sidebar  collapse">
           <div class="position-sticky pt-3">
 
             <ul class="nav flex-column">
