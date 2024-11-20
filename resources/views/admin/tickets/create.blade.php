@@ -60,7 +60,6 @@
                 <select name="agent_id" id="agent_id" class="form-select @error('agent_id') is-invalid @enderror">
 
                     <option disabled selected>Select an agent</option>
-
                     @foreach ($agents as $agent)
                         <option value="{{ $agent->id }}" {{ old('agent_id') == $agent->id ? 'selected' : '' }}>
                             {{ $agent->name }}
