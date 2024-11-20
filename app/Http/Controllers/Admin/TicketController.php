@@ -44,22 +44,23 @@ class TicketController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'status_id' => 'required|exists:statuses,id',
-            'agent_id' => 'required|exists:agents,id',
+            'agent_id' => 'exists:agents,id',
             'category_id' => 'required|exists:categories,id',
         ]);
 
         // Create a new ticket
         $ticket = Ticket::create([
+            'date' => NOW(),
             'title' => $validated['title'],
             'description' => $validated['description'],
             'status_id' => $validated['status_id'],
             'agent_id' => $validated['agent_id'],
             'category_id' => $validated['category_id'],
-            'slug' => null, // slug will be generated automatically by the model
+            'slug' => null,
         ]);
 
         // Redirect to the ticket show page (or to the index page, etc.)
-        return redirect()->route('tickets.show', $ticket->slug)->with('success', 'Ticket created successfully!');
+        return redirect()->route('admin.tickets.show', $ticket->slug)->with('success', 'Ticket created successfully!');
     }
 
     /**
