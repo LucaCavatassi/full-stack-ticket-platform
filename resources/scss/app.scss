@@ -34,3 +34,32 @@ header {
     transition: all 0.3s ease; /* Add a smooth transition for all properties */
 }
 
+#ms-welcome {
+    height: calc(100vh - $header-height);
+    background-image: url(https://img.freepik.com/free-vector/travel-cinema-ticket-mockup_107791-28974.jpg?t=st=1732113591~exp=1732117191~hmac=d1fd773db8b237f47dc740f2f3a26550693205e982773c388a598fc8c5e0a62e&w=2000);
+    background-position: center;
+    background-repeat: repeat-x;  // Ensures the image repeats horizontally
+    position: relative;
+    animation: scroll-background 50s linear infinite;  // Animation for continuous movement
+
+    // Overlay styles
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);  // Black color with 50% opacity (adjust opacity here)
+        z-index: 1;  // Ensures the overlay is on top of the background but behind any content
+    }
+}
+
+@keyframes scroll-background {
+    0% {
+        background-position: 0%;  // Start from right
+    }
+    100% {
+        background-position: 100%;  // Move to left
+    }
+}
