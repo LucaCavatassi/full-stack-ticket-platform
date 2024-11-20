@@ -25,6 +25,7 @@ header {
     @media (max-width: 767.98px) {
         &.collapse {
             position: absolute;
+            z-index: 999;
             background-color: rgba(52, 58, 64, 0.92) !important;
         }
     }
@@ -78,6 +79,6 @@ header {
     border: 2px solid white !important;
 }
 
-.navbar-toggler-icon {
-    filter: invert(1) hue-rotate(180deg);
-}
+// .navbar-toggler-icon {
+//     filter: invert(1) hue-rotate(180deg);
+// }

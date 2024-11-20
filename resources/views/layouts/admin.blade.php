@@ -20,7 +20,8 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
   <!-- Usando Vite -->
-  @vite(['resources/js/app.js'])
+  @vite(['resources/js/app.js', 'resources/scss/app.scss'])
+
 </head>
 
 <body>
