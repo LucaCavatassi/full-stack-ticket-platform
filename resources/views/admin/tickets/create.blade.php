@@ -42,7 +42,7 @@
                     @foreach ($statuses as $status)
                         {{-- If the form has been submitted and there's an error, so  there's some old data use that  --}}
                         {{-- Else us 4 as default (Non assegnato) --}}
-                        <option value="{{ $status->id }}" {{ old('status_id', 4) == $status->id ? 'selected' : '' }}>
+                        <option value="{{ $status->id }}" {{ old('status_id', 1) == $status->id ? 'selected' : '' }}>
                             {{ $status->title }}
                         </option>
                     @endforeach
@@ -58,8 +58,8 @@
             <div class="mb-3">
                 <label for="agent_id" class="form-label">Agent</label>
                 <select name="agent_id" id="agent_id" class="form-select @error('agent_id') is-invalid @enderror">
-                    
-                    <option value="" {{ old('agent_id') == null ? 'selected' : '' }}>Select an agent</option>
+
+                    <option disabled selected>Select an agent</option>
 
                     @foreach ($agents as $agent)
                         <option value="{{ $agent->id }}" {{ old('agent_id') == $agent->id ? 'selected' : '' }}>
