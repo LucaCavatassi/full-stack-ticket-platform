@@ -58,7 +58,7 @@
           <div class="position-sticky pt-3">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link text-white {{ Route::currentRouteName() == 'dashboard' ? 'bg-secondary' : '' }}"
+                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
                   href="{{ route('admin.dashboard') }}">
                   <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                 </a>
@@ -67,7 +67,7 @@
 
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link text-white {{ Route::currentRouteName() == 'tickets.index' ? 'bg-secondary' : '' }}"
+                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.tickets.index' ? 'bg-secondary' : '' }}"
                   href="{{ route('admin.tickets.index') }}">
                   <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Index
                 </a>
@@ -76,7 +76,7 @@
 
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link text-white {{ Route::currentRouteName() == 'tickets.create' ? 'bg-secondary' : '' }}"
+                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.tickets.create' ? 'bg-secondary' : '' }}"
                   href="{{ route('admin.tickets.create') }}">
                   <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Create
                 </a>
