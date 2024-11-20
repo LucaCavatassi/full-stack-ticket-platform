@@ -41,8 +41,8 @@ class TicketController extends Controller
     {
         // Validate the incoming request
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
+            'title' => 'required|string|max:255|min:4',
+            'description' => 'required|string|min:15',
             'status_id' => 'required|exists:statuses,id',
             'agent_id' => 'exists:agents,id',
             'category_id' => 'required|exists:categories,id',
