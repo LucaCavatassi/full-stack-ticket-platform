@@ -26,69 +26,71 @@
 <body>
   <div id="app">
 
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
-      <div class="row justify-content-between">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">BoolPress</a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
-          data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-      <div class="navbar-nav">
-        <div class="nav-item text-nowrap ms-2">
-          <a class="nav-link" href="{{ route('logout') }}"
-            onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-            {{ __('Logout') }}
+    <header id="header" class="navbar container-fluid navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
+      {{-- Navbar Title --}}
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Ticket Platform</a>
+      {{-- Navbar Title --}}
+
+      {{-- Hamburger --}}
+      <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {{-- Hamburger --}}
+
+      {{-- Nav Elements --}}
+        <div class="d-none d-md-inline">
+          <a class="text-white fs-5 pe-3" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Logout
           </a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
           </form>
         </div>
-      </div>
     </header>
 
-    <div class="container-fluid vh-100">
-      <div class="row h-100">
-        <!-- Definire solo parte del menu di navigazione inizialmente per poi
-        aggiungere i link necessari giorno per giorno
-        -->
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
+    <div class="container-fluid">
+      <div class="row ms-height">
+        <nav id="sidebarMenu" class="col-md-3 ms-height-sbar col-lg-2 d-md-block bg-dark ps-0 navbar-dark sidebar collapse">
           <div class="position-sticky pt-3">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
-                  href="{{ route('admin.dashboard') }}">
-                  <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
-                </a>
-              </li>
-            </ul>
 
             <ul class="nav flex-column">
+              {{-- Index --}}
               <li class="nav-item">
                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.tickets.index' ? 'bg-secondary' : '' }}"
                   href="{{ route('admin.tickets.index') }}">
-                  <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Index
+                  <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> All tickets
                 </a>
               </li>
-            </ul>
+              {{-- Index --}}
 
-            <ul class="nav flex-column">
+              {{-- Create --}}
               <li class="nav-item">
                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.tickets.create' ? 'bg-secondary' : '' }}"
                   href="{{ route('admin.tickets.create') }}">
                   <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Create
                 </a>
               </li>
-            </ul>
+              {{-- Create --}}
 
+              <hr style="color: white">
+              {{-- Logout --}}
+              <li class="nav-item" >
+                <a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form>
+              </li>
+              {{-- Logout --}}
+              
+            </ul>
 
           </div>
         </nav>
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <div class="mt-5"> 
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ms-height">
+          <div class="pt-3"> 
             @yield('content')
           </div>
         </main>

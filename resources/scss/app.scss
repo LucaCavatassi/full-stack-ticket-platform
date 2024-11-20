@@ -1,1 +1,32 @@
 @import "~bootstrap/scss/bootstrap";
+
+$header-height: 80px;
+
+#app {
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+header {
+    height: $header-height;
+}
+
+.ms-height {
+    
+    max-height: calc(100vh - $header-height);
+    overflow-y: auto;
+}
+
+.ms-height-sbar {
+    height: calc(100vh - $header-height);
+}
+
+#sidebarMenu {
+    // Apply the background color on small screens only
+    @media (max-width: 767.98px) {
+        &.collapse {
+            position: absolute;
+            background-color: rgba(52, 58, 64, 0.92) !important;
+        }
+    }
+}
