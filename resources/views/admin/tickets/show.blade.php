@@ -25,6 +25,5 @@
             <button class="btn btn-danger">Delete</button>
         </form>
     </div>
-
 </div>
 @endsection
