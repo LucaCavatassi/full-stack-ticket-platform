@@ -14,6 +14,10 @@
                 <p><strong>Created At:</strong> {{ $ticket->created_at->format('M d, Y') }}</p>
                 <p><strong>Updated At:</strong> {{ $ticket->updated_at->format('M d, Y') }}</p>
             </div>
+
+            <form action="{{ route('admin.tickets.show', $ticket->slug)}}" method="GET">
+                <button class="btn btn-primary">View Details</button>
+            </form>
             <hr>
         @endforeach
     @endif
