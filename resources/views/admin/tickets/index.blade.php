@@ -1,9 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-    @if (session('deleteSuccess'))
+    @if (session('success'))
         <div class="alert alert-primary" id="success-message">
-            {{ session('deleteSuccess') }}
+            {{-- {!! message !!} needed syntax to rendere html tags --}}
+            {!! session('success') !!}
         </div>
 
         <script>

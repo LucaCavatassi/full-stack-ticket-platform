@@ -40,7 +40,7 @@ class TicketController extends Controller
     {
         // Validate the incoming request
         $validated = $request->validate([
-            'title' => 'required|string|max:255|min:4',
+            'title' => 'required|string|max:50|min:4',
             'description' => 'required|string|min:15',
             'status_id' => 'required|exists:statuses,id',
             'agent_id' => 'required|exists:agents,id',
@@ -58,8 +58,9 @@ class TicketController extends Controller
             'slug' => null,
         ]);
 
+        $createMessage = "Ticket <strong><i>{$ticket->title}</i></strong> created successfully!";
         // Redirect to the ticket show page (or to the index page, etc.)
-        return redirect()->route('admin.tickets.show', $ticket->slug)->with('success', 'Ticket created successfully!');
+        return redirect()->route('admin.tickets.show', $ticket->slug)->with('success', $createMessage);
     }
 
     /**
@@ -95,9 +96,22 @@ class TicketController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $slug)
     {
-        //
+        // Validate only the status field
+        $validated = $request->validate([
+            'status_id' => 'required|exists:statuses,id',
+        ]);
+
+        // Find the ticket by slug
+        $ticket = Ticket::where('slug', $slug)->firstOrFail();
+
+        $updateMessage = "Ticket <strong><i>{$ticket->title}</i></strong> status updated successfully!";
+        // Update the ticket's status
+        $ticket->update($validated);
+
+        // Redirect to the tickets index with a success message
+        return redirect()->route('admin.tickets.index')->with('success', $updateMessage );
     }
 
     /**
@@ -113,9 +127,9 @@ class TicketController extends Controller
         $ticket->delete();
 
         // Create success message
-        $successMessage = "Ticket {$ticket->name} deleted successfully!";
+        $successMessage = "Ticket <strong><i>{$ticket->title}</i></strong> deleted successfully!";
 
         // Redirect to the index page with the success message
-        return redirect()->route('admin.tickets.index')->with('deleteSuccess', $successMessage);
+        return redirect()->route('admin.tickets.index')->with('success', $successMessage);
     }
 }
