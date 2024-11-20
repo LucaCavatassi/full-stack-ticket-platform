@@ -1,6 +1,21 @@
 @extends('layouts.admin')
 
 @section('content')
+    @if (isset($successMessage))
+        <div class="alert alert-primary" id="success-message">
+            {{ $successMessage }}
+        </div>
+
+        <script>
+            setTimeout(function() {
+                const message = document.getElementById('success-message');
+                if (message) {
+                    message.style.display = 'none'; // Hide the message
+                }
+            }, 4000);
+        </script>
+    @endif
+
     @if ($tickets->isEmpty())
         <p>No tickets available.</p>
     @else

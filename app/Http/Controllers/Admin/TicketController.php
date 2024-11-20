@@ -98,11 +98,22 @@ class TicketController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($slug)
-    {
-        $ticket = Ticket::with('status', 'agent', 'category')
-            ->where('slug', $slug)
-            ->firstOrFail();
+{
+    // Find the ticket by slug, including related status, agent, and category
+    $ticket = Ticket::with('status', 'agent', 'category')
+        ->where('slug', $slug)
+        ->firstOrFail();
 
-        var_dump($ticket);
-    }
+    // Delete the ticket
+    $ticket->delete(); // Use delete, not destroy()
+
+    // Success message
+    $successMessage = "Ticket {$ticket->name} deleted successfully!";
+
+    // Get all tickets after deletion
+    $tickets = Ticket::with(['status', 'agent', 'category'])->get();
+
+    // Return the view with tickets and success message
+    return view('admin.tickets.index', compact('tickets', 'successMessage'));
+}
 }
