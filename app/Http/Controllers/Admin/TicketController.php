@@ -79,11 +79,17 @@ class TicketController extends Controller
      */
     public function edit($slug)
     {
-         // Eager load the related models (status, agent, category)
+        // Eager load the related models (status, agent, category)
         $ticket = Ticket::with('status', 'agent', 'category')
             ->where('slug', $slug)
             ->firstOrFail();
-        var_dump($ticket);
+
+        // Fetch other necessary data for the form (statuses, agents, categories)
+        $statuses = Status::all();
+        $agents = Agent::all();
+        $categories = Category::all();
+        // Return the edit view with the ticket and all data
+        return view('admin.tickets.edit', compact('ticket', 'statuses', 'agents', 'categories'));
     }
 
     /**
@@ -102,13 +108,13 @@ class TicketController extends Controller
         $ticket = Ticket::with('status', 'agent', 'category')
             ->where('slug', $slug)
             ->firstOrFail();
-    
+
         // Delete the ticket
         $ticket->delete();
-    
+
         // Create success message
         $successMessage = "Ticket {$ticket->name} deleted successfully!";
-    
+
         // Redirect to the index page with the success message
         return redirect()->route('admin.tickets.index')->with('deleteSuccess', $successMessage);
     }
