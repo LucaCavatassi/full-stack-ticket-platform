@@ -21,11 +21,9 @@ Route::get('/', function () {
 });
 
 
-Route::middleware('auth')
-    ->prefix('admin') // Prefisso nell'url delle rotte di questo gruppo
+Route::middleware('auth')// Prefisso nell'url delle rotte di questo gruppo
     ->name('admin.') // inizio di ogni nome delle rotte del gruppo
     ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('tickets', TicketController::class);
 
     });
