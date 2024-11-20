@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 <div class="ticket-detail">
     <h1>{{ $ticket->title }}</h1>
     <p><strong>Status:</strong> {{ $ticket->status->title ?? 'No Status' }}</p>

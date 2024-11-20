@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('content')
-    @if (isset($successMessage))
+    @if (session('deleteSuccess'))
         <div class="alert alert-primary" id="success-message">
-            {{ $successMessage }}
+            {{ session('deleteSuccess') }}
         </div>
 
         <script>
             setTimeout(function() {
                 const message = document.getElementById('success-message');
                 if (message) {
-                    message.style.display = 'none'; // Hide the message
+                    message.style.display = 'none'; // Hide the message after 4 seconds
                 }
             }, 4000);
         </script>
