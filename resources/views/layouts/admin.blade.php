@@ -58,7 +58,7 @@
               <li class="nav-item">
                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.tickets.index' ? 'bg-secondary' : '' }}"
                   href="{{ route('admin.tickets.index') }}">
-                  <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> All tickets
+                  <i class="fa-solid fa-ticket fa-lg fa-fw"></i> All tickets
                 </a>
               </li>
               {{-- Index --}}
@@ -67,14 +67,15 @@
               <li class="nav-item">
                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.tickets.create' ? 'bg-secondary' : '' }}"
                   href="{{ route('admin.tickets.create') }}">
-                  <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Create
+                  <i class="fa-solid fa-plus fa-lg fa-fw"></i> Create
                 </a>
               </li>
               {{-- Create --}}
 
               <hr style="color: white">
+
               {{-- Logout --}}
-              <li class="nav-item" >
+              <li class="nav-item d-md-none">
                 <a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   Logout
                 </a>
