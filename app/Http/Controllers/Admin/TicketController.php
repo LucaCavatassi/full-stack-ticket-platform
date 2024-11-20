@@ -44,7 +44,7 @@ class TicketController extends Controller
             'title' => 'required|string|max:255|min:4',
             'description' => 'required|string|min:15',
             'status_id' => 'required|exists:statuses,id',
-            'agent_id' => 'exists:agents,id',
+            'agent_id' => 'nullable|exists:agents,id',
             'category_id' => 'required|exists:categories,id',
         ]);
 
