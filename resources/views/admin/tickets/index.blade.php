@@ -26,9 +26,8 @@
                 <div class="card-body">
                     <div class="ticket-detail">
                         <h1>{{ $ticket->title }}</h1>
-                        <p><strong>Status:</strong> {{ $ticket->status->title ?? 'No Status' }}</p>
-                        <p><strong>Created At:</strong> {{ $ticket->created_at->format('M d, Y') }}</p>
-                        <p><strong>Updated At:</strong> {{ $ticket->updated_at->format('M d, Y') }}</p>
+                        <p><strong>Status - </strong> {{ $ticket->status->title ?? 'No Status' }}</p>
+                        <p><strong>Last update - </strong> {{ $ticket->updated_at->format('M d, Y') }}</p>
                     </div>
         
                     <form action="{{ route('admin.tickets.show', $ticket->slug)}}" method="GET">
