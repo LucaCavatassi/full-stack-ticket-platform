@@ -53,6 +53,16 @@ header {
         background-color: rgba(0, 0, 0, 0.5);  // Black color with 50% opacity (adjust opacity here)
         z-index: 1;  // Ensures the overlay is on top of the background but behind any content
     }
+    h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);  // Centers the text
+        color: white;  // Change text color to white or any other color that stands out
+        z-index: 2;  // Ensures the text is above the overlay
+        font-size: 3rem;  // Adjust font size as needed
+        text-align: center;  // Center-align the text
+    }
 }
 
 @keyframes scroll-background {
@@ -62,4 +72,12 @@ header {
     100% {
         background-position: 100%;  // Move to left
     }
+}
+
+.navbar-toggler {
+    border: 2px solid white !important;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1) hue-rotate(180deg);
 }

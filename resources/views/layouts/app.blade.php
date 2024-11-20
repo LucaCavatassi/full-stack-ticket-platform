@@ -23,7 +23,7 @@
 <body>
     <div id="app">
         {{-- NavBar --}}
-        <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm" style="height: 80px">
+        <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm" style="min-height: 80px">
             <div class="container d-flex justify-content-between">
                 {{-- Brand --}}
                 <a class="navbar-brand d-flex align-items-center text-white" href="{{ url('/') }}">
