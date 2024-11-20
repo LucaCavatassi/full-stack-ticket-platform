@@ -20,18 +20,22 @@
     @if ($tickets->isEmpty())
         <p>No tickets available.</p>
     @else
+        <h1 class="pb-3">All tickets</h1>
         @foreach ($tickets as $ticket)
-            <div class="ticket-detail">
-                <h1>{{ $ticket->title }}</h1>
-                <p><strong>Status:</strong> {{ $ticket->status->title ?? 'No Status' }}</p>
-                <p><strong>Created At:</strong> {{ $ticket->created_at->format('M d, Y') }}</p>
-                <p><strong>Updated At:</strong> {{ $ticket->updated_at->format('M d, Y') }}</p>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="ticket-detail">
+                        <h1>{{ $ticket->title }}</h1>
+                        <p><strong>Status:</strong> {{ $ticket->status->title ?? 'No Status' }}</p>
+                        <p><strong>Created At:</strong> {{ $ticket->created_at->format('M d, Y') }}</p>
+                        <p><strong>Updated At:</strong> {{ $ticket->updated_at->format('M d, Y') }}</p>
+                    </div>
+        
+                    <form action="{{ route('admin.tickets.show', $ticket->slug)}}" method="GET">
+                        <button class="btn btn-primary">View Details</button>
+                    </form>
+                </div>
             </div>
-
-            <form action="{{ route('admin.tickets.show', $ticket->slug)}}" method="GET">
-                <button class="btn btn-primary">View Details</button>
-            </form>
-            <hr>
         @endforeach
     @endif
 @endsection
