@@ -22,7 +22,6 @@ header {
 }
 
 #sidebarMenu {
-    // Apply the background color on small screens only
     @media (max-width: 767.98px) {
         &.collapse {
             position: absolute;
@@ -34,3 +33,4 @@ header {
 #sidebarMenu {
     transition: all 0.3s ease; /* Add a smooth transition for all properties */
 }
+

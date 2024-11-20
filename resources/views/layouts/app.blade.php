@@ -17,6 +17,8 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+    
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
@@ -26,16 +28,12 @@
             <div class="container d-flex justify-content-between">
                 {{-- Brand --}}
                 <a class="navbar-brand d-flex align-items-center text-white" href="{{ url('/') }}">
-                    <div class="fs-2">
-                        Ticket Platform
-                    </div>
+                    <span class="fs-2">Ticket Platform</span>
                 </a>
                 {{-- Brand --}}
 
                 {{-- Hamburger --}}
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 {{-- Hamburger --}}
@@ -43,7 +41,6 @@
                 {{-- Collapsed DropDown --}}
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
                         {{-- Guest View - Only Login --}}
                         @guest
                             <li class="nav-item">
