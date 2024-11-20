@@ -8,7 +8,6 @@ use App\Models\Category;
 use App\Models\Status;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class TicketController extends Controller
 {
@@ -78,9 +77,13 @@ class TicketController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($slug)
     {
-        //
+         // Eager load the related models (status, agent, category)
+        $ticket = Ticket::with('status', 'agent', 'category')
+            ->where('slug', $slug)
+            ->firstOrFail();
+        var_dump($ticket);
     }
 
     /**
@@ -94,8 +97,12 @@ class TicketController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($slug)
     {
-        //
+        $ticket = Ticket::with('status', 'agent', 'category')
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        var_dump($ticket);
     }
 }
