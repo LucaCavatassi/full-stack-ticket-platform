@@ -16,7 +16,10 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::with(['status', 'agent', 'category'])->get();
+        $tickets = Ticket::with(['status', 'agent', 'category'])
+            ->orderBy('updated_at','desc')
+            ->orderBy('status.id', 'asc')
+            ->get();
         return view('admin.tickets.index', compact('tickets'));
     }
 
