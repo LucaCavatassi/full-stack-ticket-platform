@@ -21,24 +21,25 @@
         <p>No tickets available.</p>
     @else
         <h1 class="pb-3">All tickets</h1>
-        <div class="btn-group">
-            <a href="{{ route('admin.tickets.filter', ['status_id' => 1]) }}" class="btn btn-primary {{ request('status_id') == 1 ? 'active' : '' }}">Assegnato</a>
-            <a href="{{ route('admin.tickets.filter', ['status_id' => 2]) }}" class="btn btn-primary {{ request('status_id') == 2 ? 'active' : '' }}">In Lavorazione</a>
-            <a href="{{ route('admin.tickets.filter', ['status_id' => 3]) }}" class="btn btn-primary {{ request('status_id') == 3 ? 'active' : '' }}">Chiuso</a>
-            <a href="{{ route('admin.tickets.index') }}" class="btn btn-primary">Tutti</a>
-        </div>
-
-        <form method="GET" action="{{ route('admin.tickets.filter') }}">
+        
+        <form method="GET" action="{{ route('admin.tickets.filter') }}" id="filterForm">
             <div class="form-group">
                 <label for="category_id">Category</label>
                 <select name="category_id" id="category_id" class="form-control" onchange="this.form.submit()">
-                    <option selected disabled>Select Category</option>
+                    <option value="">Select Category</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
                             {{ $category->title }}
                         </option>
                     @endforeach
                 </select>
+            </div>
+        
+            <div class="btn-group">
+                <a href="{{ route('admin.tickets.filter', ['status_id' => 1, 'category_id' => request('category_id')]) }}" class="btn btn-primary {{ request('status_id') == 1 ? 'active' : '' }}">Assegnato</a>
+                <a href="{{ route('admin.tickets.filter', ['status_id' => 2, 'category_id' => request('category_id')]) }}" class="btn btn-primary {{ request('status_id') == 2 ? 'active' : '' }}">In Lavorazione</a>
+                <a href="{{ route('admin.tickets.filter', ['status_id' => 3, 'category_id' => request('category_id')]) }}" class="btn btn-primary {{ request('status_id') == 3 ? 'active' : '' }}">Chiuso</a>
+                <a href="{{ route('admin.tickets.index') }}" class="btn btn-primary">Tutti</a>
             </div>
         </form>
 
