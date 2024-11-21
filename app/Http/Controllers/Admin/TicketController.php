@@ -20,7 +20,10 @@ class TicketController extends Controller
             ->orderBy('status_id', 'asc')
             ->orderBy('updated_at', 'asc')
             ->get();
-        return view('admin.tickets.index', compact('tickets'));
+        
+        $categories = Category::all();
+            
+        return view('admin.tickets.index', compact('tickets', 'categories'));
     }
 
     /**
@@ -136,7 +139,7 @@ class TicketController extends Controller
         return redirect()->route('admin.tickets.index')->with('success', $successMessage);
     }
 
-    public function filterByStatus(Request $request)
+    public function filter(Request $request)
     {
         // Start with the base query
         $query = Ticket::with(['status', 'agent', 'category']);
@@ -144,11 +147,6 @@ class TicketController extends Controller
         // Apply filters dynamically based on request parameters
         if ($request->has('status_id')) {
             $query->where('status_id', $request->get('status_id'));
-        }
-
-        // Check for other filters and apply them
-        if ($request->has('agent_id')) {
-            $query->where('agent_id', $request->get('agent_id'));
         }
 
         if ($request->has('category_id')) {
@@ -160,6 +158,9 @@ class TicketController extends Controller
 
         $tickets = $query->get();
 
-        return view('admin.tickets.index', compact('tickets'));
+        $categories = Category::all();
+
+
+        return view('admin.tickets.index', compact('tickets', 'categories'));
     }
 }
