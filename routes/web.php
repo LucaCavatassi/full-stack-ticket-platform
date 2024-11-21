@@ -25,7 +25,7 @@ Route::middleware('auth')// Prefisso nell'url delle rotte di questo gruppo
     ->name('admin.') // inizio di ogni nome delle rotte del gruppo
     ->group(function () {
         Route::resource('tickets', TicketController::class);
-        Route::get('tickets/filter', [TicketController::class, 'filter']);
+        Route::get('tickets/filter', [TicketController::class, 'filter'])->name('tickets.filter');
     });
 
 require __DIR__ . '/auth.php';
