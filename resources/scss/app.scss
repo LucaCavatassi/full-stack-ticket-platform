@@ -41,7 +41,7 @@ header {
     background-position: center;
     background-repeat: repeat-x;  // Ensures the image repeats horizontally
     position: relative;
-    animation: scroll-background 50s linear infinite;  // Animation for continuous movement
+    animation: scroll-background 30s linear infinite;  // Animation for continuous movement
 
     // Overlay styles
     &::before {
