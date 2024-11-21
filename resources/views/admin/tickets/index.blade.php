@@ -22,8 +22,14 @@
     @else
         <h1 class="pb-3">All tickets</h1>
         <form method="GET" action="{{ route('admin.tickets.filter') }}">
-            <button type="submit" name="status_id" value="1">Assigned</button>
-            <button type="submit" name="status_id" value="2">Unassigned</button>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary" name="status_id" value="1">Assegnato</button>
+                <button type="submit" class="btn btn-primary" name="status_id" value="2">In Lavorazione</button>
+                <button type="submit" class="btn btn-primary" name="status_id" value="3">Chiuso</button>
+                <form method="GET" action="{{route('admin.tickets.index')}}">
+                    <button type="submit" class="btn btn-primary">Tutti</button>
+                </form>
+            </div>
         </form>
 
         @foreach ($tickets as $ticket)
