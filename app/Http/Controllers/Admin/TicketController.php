@@ -20,9 +20,9 @@ class TicketController extends Controller
             ->orderBy('status_id', 'asc')
             ->orderBy('updated_at', 'asc')
             ->get();
-        
+
         $categories = Category::all();
-            
+
         return view('admin.tickets.index', compact('tickets', 'categories'));
     }
 
@@ -31,11 +31,16 @@ class TicketController extends Controller
      */
     public function create()
     {
-        // Pass related data to the view for status, agent, and category
-        $statuses = Status::all();    // Fetch all statuses
-        $agents = Agent::all();       // Fetch all agents
-        $categories = Category::all(); // Fetch all categories
+        // Fetch all statuses and categories
+        $statuses = Status::all();
+        $categories = Category::all();
 
+        // Fetch agents who do not have an open ticket (statuses 1 and 2 represent open tickets)
+        $agents = Agent::whereDoesntHave('tickets', function ($query) {
+            $query->whereIn('status_id', [1, 2]); // Assuming 1 and 2 represent open ticket statuses
+        })->get();
+
+        // Pass the filtered agents along with statuses and categories to the view
         return view('admin.tickets.create', compact('statuses', 'agents', 'categories'));
     }
 
