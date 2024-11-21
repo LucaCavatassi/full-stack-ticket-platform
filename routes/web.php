@@ -24,7 +24,7 @@ Route::get('/', function () {
 Route::middleware('auth') // Prefixed with auth middleware
     ->name('admin.') // Route names will start with 'admin.'
     ->group(function () {
-        Route::get('tickets/filter', [TicketController::class, 'filter'])->name('tickets.filter');
+        Route::get('tickets/filterByStatus', [TicketController::class, 'filterByStatus'])->name('tickets.filterByStatus');
         Route::resource('tickets', TicketController::class);
     });
 

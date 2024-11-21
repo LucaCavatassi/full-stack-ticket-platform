@@ -136,7 +136,7 @@ class TicketController extends Controller
         return redirect()->route('admin.tickets.index')->with('success', $successMessage);
     }
 
-    public function filter(Request $request)
+    public function filterByStatus(Request $request)
     {
         // Start with the base query
         $query = Ticket::with(['status', 'agent', 'category']);
