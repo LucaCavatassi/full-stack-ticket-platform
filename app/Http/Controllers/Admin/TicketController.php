@@ -18,7 +18,7 @@ class TicketController extends Controller
     {
         $tickets = Ticket::with(['status', 'agent', 'category'])
             ->orderBy('status_id', 'asc')
-            ->orderBy('updated_at','asc')
+            ->orderBy('updated_at', 'asc')
             ->get();
         return view('admin.tickets.index', compact('tickets'));
     }
@@ -114,7 +114,7 @@ class TicketController extends Controller
         $ticket->update($validated);
 
         // Redirect to the tickets index with a success message
-        return redirect()->route('admin.tickets.index')->with('success', $updateMessage );
+        return redirect()->route('admin.tickets.index')->with('success', $updateMessage);
     }
 
     /**
@@ -145,20 +145,21 @@ class TicketController extends Controller
         if ($request->has('status_id')) {
             $query->where('status_id', $request->get('status_id'));
         }
-        
+
+        // Check for other filters and apply them
         if ($request->has('agent_id')) {
             $query->where('agent_id', $request->get('agent_id'));
         }
 
-        // Add any other filters as needed
         if ($request->has('category_id')) {
             $query->where('category_id', $request->get('category_id'));
         }
 
-        // Optional: Apply sorting and pagination
-        $tickets = $query->orderBy('status_id', 'asc')
-                        ->orderBy('updated_at', 'asc');
+        $query->orderBy('status_id', 'asc')
+            ->orderBy('updated_at', 'asc');
+
+        $tickets = $query->get();
+
         return view('admin.tickets.index', compact('tickets'));
     }
-
 }

@@ -21,11 +21,11 @@ Route::get('/', function () {
 });
 
 
-Route::middleware('auth')// Prefisso nell'url delle rotte di questo gruppo
-    ->name('admin.') // inizio di ogni nome delle rotte del gruppo
+Route::middleware('auth') // Prefixed with auth middleware
+    ->name('admin.') // Route names will start with 'admin.'
     ->group(function () {
-        Route::resource('tickets', TicketController::class);
         Route::get('tickets/filter', [TicketController::class, 'filter'])->name('tickets.filter');
+        Route::resource('tickets', TicketController::class);
     });
 
 require __DIR__ . '/auth.php';

@@ -21,11 +21,11 @@
         <p>No tickets available.</p>
     @else
         <h1 class="pb-3">All tickets</h1>
-        <form method="GET" action="{{ url('web/filter') }}" id="filterForm">
-            <!-- Filter Status -->
+        <form method="GET" action="{{ route('admin.tickets.filter') }}">
             <button type="submit" name="status_id" value="1">Assigned</button>
             <button type="submit" name="status_id" value="2">Unassigned</button>
         </form>
+
         @foreach ($tickets as $ticket)
             <div class="card mb-3">
                 <div class="card-body">
