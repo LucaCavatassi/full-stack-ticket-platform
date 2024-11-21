@@ -31,7 +31,7 @@
         <form method="GET" action="{{ route('admin.tickets.filter') }}">
             <div class="form-group">
                 <label for="category_id">Category</label>
-                <select name="category_id" id="category_id" class="form-control">
+                <select name="category_id" id="category_id" class="form-control" onchange="this.form.submit()">
                     <option selected disabled>Select Category</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
@@ -40,8 +40,6 @@
                     @endforeach
                 </select>
             </div>
-            
-            <button type="submit" class="btn btn-primary">Filter</button>
         </form>
 
         @foreach ($tickets as $ticket)
