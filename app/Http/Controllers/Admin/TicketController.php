@@ -135,4 +135,30 @@ class TicketController extends Controller
         // Redirect to the index page with the success message
         return redirect()->route('admin.tickets.index')->with('success', $successMessage);
     }
+
+    public function filter(Request $request)
+    {
+        // Start with the base query
+        $query = Ticket::with(['status', 'agent', 'category']);
+
+        // Apply filters dynamically based on request parameters
+        if ($request->has('status_id')) {
+            $query->where('status_id', $request->get('status_id'));
+        }
+        
+        if ($request->has('agent_id')) {
+            $query->where('agent_id', $request->get('agent_id'));
+        }
+
+        // Add any other filters as needed
+        if ($request->has('category_id')) {
+            $query->where('category_id', $request->get('category_id'));
+        }
+
+        // Optional: Apply sorting and pagination
+        $tickets = $query->orderBy('status_id', 'asc')
+                        ->orderBy('updated_at', 'asc');
+        return view('admin.tickets.index', compact('tickets'));
+    }
+
 }
